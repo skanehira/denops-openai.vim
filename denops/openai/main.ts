@@ -1,16 +1,54 @@
-import { Denops, isString } from "./deps.ts";
+import { autocmd, Denops, helper, mapping } from "./deps.ts";
+import { Client } from "./client.ts";
+import { load } from "./config.ts";
 
 export async function main(denops: Denops): Promise<void> {
   await denops.cmd(
-    `command! -nargs=1 Hello call denops#notify("${denops.name}", "hello", [<f-args>])`,
+    `command! OpenaiChat :e openai://chat`,
   );
 
+  await autocmd.group(denops, "openai_chat_buffer", (helper) => {
+    helper.remove("*");
+    helper.define(
+      "BufReadCmd",
+      "openai://chat",
+      `call denops#notify("${denops.name}", "openaiChat", [])`,
+    );
+    helper.define(
+      "BufWriteCmd",
+      "openai://chat",
+      `call denops#notify("${denops.name}", "sendChatMessage", [getline(1, "$")])`,
+    );
+  });
+
+  const config = await load(denops);
+  const client = new Client(config);
+
   denops.dispatcher = {
-    async hello(arg: unknown): Promise<void> {
-      if (isString(arg)) {
-        console.log("hello", arg);
+    async openaiChat(): Promise<void> {
+      await denops.cmd(
+        "setlocal ft=markdown buftype=acwrite nomodified",
+      );
+      await denops.dispatch(denops.name, "sendChatMessage", ["Hello"]);
+    },
+
+    async sendChatMessage(message?: unknown): Promise<void> {
+      // TODO argument validation
+      let text = "";
+      if (message) {
+        text = (message as string[]).join("\n");
+      } else {
+        text = (await denops.call("getline", 1, "$") as string[]).join("\n");
       }
-      await Promise.resolve();
+      await helper.echo(denops, "waiting for openai response...");
+      const resp = await client.completion(text);
+      await denops.call(
+        "append",
+        "$",
+        resp.choices[0].text.split("\n").map((text) => `${text}`),
+      );
+      await denops.call("feedkeys", "Go");
+      await helper.echo(denops, "");
     },
   };
 }
