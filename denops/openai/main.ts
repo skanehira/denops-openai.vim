@@ -1,4 +1,4 @@
-import { autocmd, Denops, helper, mapping } from "./deps.ts";
+import { autocmd, Denops, helper } from "./deps.ts";
 import { Client } from "./client.ts";
 import { load } from "./config.ts";
 
@@ -40,15 +40,28 @@ export async function main(denops: Denops): Promise<void> {
       } else {
         text = (await denops.call("getline", 1, "$") as string[]).join("\n");
       }
+
       await helper.echo(denops, "waiting for openai response...");
-      const resp = await client.completion(text);
-      await denops.call(
-        "append",
-        "$",
-        resp.choices[0].text.split("\n").map((text) => `${text}`),
-      );
-      await denops.call("feedkeys", "Go");
-      await helper.echo(denops, "");
+
+      try {
+        const resp = await client.completion(text);
+        const reply = resp.choices[0].text.trimStart().split("\n").map((text) =>
+          `${text}`
+        );
+
+        const line = await denops.call("line", ".") === 1 ? 0 : "$";
+        await denops.call(
+          "append",
+          line,
+          reply,
+        );
+
+        await denops.call("feedkeys", "G");
+        await helper.echo(denops, "");
+        await denops.cmd("setlocal nomodified");
+      } catch (e) {
+        helper.echoerr(denops, e.message);
+      }
     },
   };
 }
