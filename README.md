@@ -1,4 +1,4 @@
-# denops-template.vim(WIP)
+# denops-openai.vim(WIP)
 Plugin for [OpenAI](https://openai.com).
 
 ## Usage
