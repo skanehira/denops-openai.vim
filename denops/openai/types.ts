@@ -2,8 +2,8 @@ import { z } from "./deps.ts";
 
 export const Choice = z.object({
   text: z.string(),
-  index: z.number(),
-  finish_reason: z.string(),
+  index: z.nullable(z.number()),
+  finish_reason: z.nullable(z.string()),
 });
 
 export const Usage = z.object({
@@ -18,7 +18,6 @@ export const Response = z.object({
   created: z.number(),
   model: z.string(),
   choices: z.array(Choice),
-  usage: Usage,
 });
 export type Response = z.infer<typeof Response>;
 
