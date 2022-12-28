@@ -1,0 +1,118 @@
+*openai.txt*	OpenAI client for Vim/Neovim
+
+Author: skanehira <sho19921005@gmail.com>
+License : MIT license  {{{
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+    The above copyright notice and this permission notice shall be included
+    in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+    OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+    CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+    TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+    SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+}}}
+
+==============================================================================
+CONTENTS					*openai-contents*
+
+INTRODUCTION			|openai-introduction|
+USAGE				|openai-usage|
+INTERFACE			|openai-interface|
+  COMMANDS			  |openai-commands|
+  VARIABLES			  |openai-variables|
+  BUFFER			  |openai-buffers|
+  KEY-MAPPINGS			  |openai-key-mappings|
+  FUNCTIONS			  |openai-functions|
+TODO				|openai-todo|
+CHANGELOG			|openai-changelog|
+
+
+==============================================================================
+INTRODUCTION					*openai-introduction*
+
+*denops-openai.vim* is a Vim/Neovim plugin for OpenAI.
+
+Latest version:
+https://github.com/skanehira/denops-openai.vim
+
+
+==============================================================================
+USAGE						*openai-usage*
+At first, please get your OpenAI API key.  
+And then, please add config variable.
+
+e.g: init.lua
+
+>
+  vim.g['openai_config'] = { apiKey = 'your api key' };
+<
+
+Ok, this is the end of the setup.  
+Next, you can execute this command to open buffer and feel free to write some things.
+
+>
+  :OpenaiChat
+<
+
+At the end, `:write` will post message to openai and you'll recieve response.
+
+==============================================================================
+INTERFACE					*openai-interface*
+
+------------------------------------------------------------------------------
+VARIABLES					*openai-variables*
+
+*g:openai_config*
+  Set your configuration.
+  The available setting items are as follows.
+
+    "apiKey" (required)   Your API key.
+
+------------------------------------------------------------------------------
+COMMANDS					*openai-commands*
+
+:OpenAIChat					*:OpenAIChat*
+  Open |openai-buffer-chat|
+
+------------------------------------------------------------------------------
+LAYOUT						*openai-timeline-layout*
+
+
+------------------------------------------------------------------------------
+BUFFER						*openai-buffers*
+
+openai://chat					*openai-buffer-chat*
+  Open a buffer to talk to OpenAI.
+
+
+------------------------------------------------------------------------------
+KEY-MAPPINGS					*openai-key-mappings*
+
+KEY-MAPPINGS-TIMELINE				*openai-key-mappings-timeline*
+
+KEY-MAPPINGS-TWEET				*openai-key-mappings-tweet*
+
+------------------------------------------------------------------------------
+FUNCTIONS					*openai-functions*
+
+
+==============================================================================
+TODO						*openai-todo*
+
+
+
+==============================================================================
+CHANGELOG					*openai-changelog*
+
+
+==============================================================================
+vim:tw=85:ts=8:ft=help:norl:noet:fen:

@@ -1,8 +1,11 @@
-# denops-openai.vim(WIP)
-Plugin for [OpenAI](https://openai.com).
+# denops-template.vim
+Plugin for [OpenAI](https://openai.com).  
+This plugin is WIP, Interfaces are subject to change.
+
+![](https://i.gyazo.com/f0a43bb7a0589644f9590615a8ad117f.gif)
 
 ## Usage
-At first, please get your OpenAI api key.
+At first, please get your OpenAI api key.  
 And then, please add config variable.
 
 e.g: init.lua
@@ -10,7 +13,7 @@ e.g: init.lua
 vim.g['openai_config'] = { apiKey = 'your api key' };
 ```
 
-Ok, this is the end of the setup.
+Ok, this is the end of the setup.  
 Next, you can execute this command to open buffer and feel free to write some things.
 
 ```vim
