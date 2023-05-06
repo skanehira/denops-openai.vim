@@ -1,11 +1,11 @@
-export * from "https://deno.land/x/denops_std@v4.1.6/mod.ts";
-export * from "https://deno.land/x/denops_std@v4.1.6/variable/mod.ts";
+export * from "https://deno.land/x/denops_std@v4.1.7/mod.ts";
+export * from "https://deno.land/x/denops_std@v4.1.7/variable/mod.ts";
 export * from "https://deno.land/x/unknownutil@v2.1.0/mod.ts";
 export * from "https://deno.land/std@0.186.0/testing/asserts.ts";
 export * from "https://deno.land/x/zod@v3.21.4/mod.ts";
 export { TextLineStream } from "https://deno.land/std@0.186.0/streams/text_line_stream.ts";
-export * as helper from "https://deno.land/x/denops_std@v4.1.6/helper/mod.ts";
-export * as autocmd from "https://deno.land/x/denops_std@v4.1.6/autocmd/mod.ts";
-export * as variable from "https://deno.land/x/denops_std@v4.1.6/variable/mod.ts";
-export * as mapping from "https://deno.land/x/denops_std@v4.1.6/mapping/mod.ts";
-export { gather } from "https://deno.land/x/denops_std@v4.1.6/batch/gather.ts";
+export * as helper from "https://deno.land/x/denops_std@v4.1.7/helper/mod.ts";
+export * as autocmd from "https://deno.land/x/denops_std@v4.1.7/autocmd/mod.ts";
+export * as variable from "https://deno.land/x/denops_std@v4.1.7/variable/mod.ts";
+export * as mapping from "https://deno.land/x/denops_std@v4.1.7/mapping/mod.ts";
+export { gather } from "https://deno.land/x/denops_std@v4.1.7/batch/gather.ts";
